@@ -112,8 +112,9 @@ def get_version_string():
     # Parse version string
     version_string = find_meta('version')
 
-    # Check validity
-    if not is_canonical_version(version_string):
+    # Check validity of the non-local portion
+    version_string_base = version_string.split('+')[0]
+    if not is_canonical_version(version_string_base):
         message = (
             'The detected version string "{}" is not in canonical '
             'format as defined in PEP 440.'.format(version_string))
